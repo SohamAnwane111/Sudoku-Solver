@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  background: rgb(23, 23, 23);
+}
+
+h1 {
+  color: white;
+  font-family: "Rubik", sans-serif;
+  text-transform: uppercase;
+  margin-top: 2%;
+}
+
+h3 {
+  color: white;
+  font-family: "Rubik", sans-serif;
+  text-transform: uppercase;
+  margin-top: 1%;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 2.2em;
+  margin: 0 auto;
+  color: white;
+  margin-top: 40px;
+}
+
+colgroup,
+tbody {
+  border: solid 3.2px;
+}
+
+td {
+  border: solid thin;
+  height: 1.4em;
+  width: 1.4em;
+  text-align: center;
+}
+
+button {
+  margin: 12px 0;
+  font-size: 25px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  height: 32.5px;
+  width: 100.5px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.711);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.459);
+}
+
+.btn1 button {
+  margin-top: 27px;
+}
