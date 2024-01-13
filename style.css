@@ -6,21 +6,28 @@
 }
 
 body {
-  background: rgb(23, 23, 23);
+  background: linear-gradient(to left, black, rgb(33, 0, 56), black);
 }
 
 h1 {
   color: white;
-  font-family: "Rubik", sans-serif;
   text-transform: uppercase;
   margin-top: 2%;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 500;
+  font-size: 40px;
 }
 
 h3 {
-  color: white;
+  color: gray;
   font-family: "Rubik", sans-serif;
   text-transform: uppercase;
   margin-top: 1%;
+}
+
+.bt {
+  color: #fff;
+  font-family: "Raleway", sans-serif;
 }
 
 table {
@@ -28,7 +35,7 @@ table {
   font-size: 2.2em;
   margin: 0 auto;
   color: white;
-  margin-top: 40px;
+  margin-top: -8px;
 }
 
 colgroup,
@@ -41,18 +48,22 @@ td {
   height: 1.4em;
   width: 1.4em;
   text-align: center;
+  background-color: black;
 }
 
 button {
   margin: 12px 0;
-  font-size: 25px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: bolder;
   height: 32.5px;
   width: 100.5px;
+  border: 3px solid black;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.711);
   font-weight: bold;
   cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  letter-spacing: 1.35px;
 }
 
 button:hover {
@@ -61,4 +72,31 @@ button:hover {
 
 .btn1 button {
   margin-top: 27px;
+}
+
+.result {
+  width: 220px;
+  height: 48px;
+  background-color: rgba(128, 128, 128, 0.215);
+  display: inline-block;
+  position: relative;
+  left: 383px;
+  top: 47.5px;
+  border: 2px solid rgba(255, 255, 255, 0.164);
+  border-radius: 10px;
+}
+
+.result .message {
+  color: rgb(154, 154, 154);
+  font-family: "Raleway", sans-serif;
+  font-size: larger;
+  text-align: start;
+  margin: 8.5px 0 0 10px;
+  letter-spacing: 1.1px;
+}
+
+.result .message #backtracks {
+  color: rgba(255, 255, 255, 0.792);
+  font-family: "Comfortaa", sans-serif;
+  margin-left: 14px;
 }
