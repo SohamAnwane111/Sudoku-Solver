@@ -1,9 +1,14 @@
+var backtracks = 0;
+
 function clearBoard() {
   var board = document.getElementsByTagName("td");
   for (var i = 0; i < board.length; i++) {
     board[i].innerText = "";
     board[i].style.backgroundColor = "black";
+    board[i].style.color = "white";
   }
+  backtracks = 0;
+  document.getElementById("backtracks").innerText = backtracks;
 }
 
 function boardToString() {
@@ -47,6 +52,7 @@ function solveBoard() {
   if (isBoardValid()) {
     var matrix = stringToMatrix();
     sudoku_solver(matrix);
+    document.getElementById("backtracks").innerText = backtracks;
     matrixToBoard(matrix);
   } else {
     alert("The Sudoku Board is INVALID!");
@@ -54,12 +60,16 @@ function solveBoard() {
 }
 
 function isBoardValid() {
-  return areRowsValid() && areColumnsValid() && areSquaresValid();
+  var rowCheck = areRowsValid();
+  var colCheck = areColumnsValid();
+  var squaresCheck = areSquaresValid();
+  return rowCheck && colCheck && squaresCheck;
 }
 
 function areRowsValid() {
   var string = boardToString();
   var start_index = [0, 9, 18, 27, 36, 45, 54, 63, 72];
+  var board = document.getElementsByTagName("td");
 
   for (var i = 0; i < start_index.length; i++) {
     var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -75,6 +85,10 @@ function areRowsValid() {
           }
         }
         if (found == false) {
+          var text = board[start_index[i] + j].innerText;
+          board[start_index[i] + j].style.backgroundColor = "red";
+          board[start_index[i] + j].style.color = "white";
+          board[start_index[i] + j].innerText = text;
           return false;
         }
       }
@@ -86,6 +100,7 @@ function areRowsValid() {
 function areColumnsValid() {
   var string = boardToString();
   var start_index = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  var board = document.getElementsByTagName("td");
 
   for (var i = 0; i < start_index.length; i++) {
     var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -101,6 +116,10 @@ function areColumnsValid() {
           }
         }
         if (found == false) {
+          var text = board[start_index[i] + j * 9].innerText;
+          board[start_index[i] + j * 9].style.backgroundColor = "red";
+          board[start_index[i] + j * 9].style.color = "red";
+          board[start_index[i] + j * 9].innerText = text;
           return false;
         }
       }
@@ -111,6 +130,7 @@ function areColumnsValid() {
 
 function areSquaresValid() {
   var string = boardToString();
+  var board = document.getElementsByTagName("td");
   var box_index = [0, 3, 6, 27, 30, 33, 54, 57, 60];
   var cell = [0, 1, 2, 9, 10, 11, 18, 19, 20];
 
@@ -120,7 +140,12 @@ function areSquaresValid() {
     for (var j = 0; j < cell.length; j++) {
       substring += string[index + cell[j]];
     }
-    if (isSquareValid(substring) == false) {
+    if (isSquareValid(substring) != -1) {
+      var text = board[index + cell[isSquareValid(substring)]].innerText;
+      board[index + cell[isSquareValid(substring)]].style.backgroundColor =
+        "red";
+      board[index + cell[isSquareValid(substring)]].style.color = "white";
+      board[index + cell[isSquareValid(substring)]].innerText = text;
       return false;
     }
   }
@@ -140,11 +165,11 @@ function isSquareValid(substring) {
         }
       }
       if (found == false) {
-        return false;
+        return i;
       }
     }
   }
-  return true;
+  return -1;
 }
 
 function stringToMatrix() {
@@ -204,6 +229,7 @@ function sudoku_solver(matrix) {
     if (isSafe(matrix, row, col, x)) {
       matrix[row][col] = x;
       if (sudoku_solver(matrix)) return true;
+      backtracks++;
       matrix[row][col] = 0;
     }
   }
