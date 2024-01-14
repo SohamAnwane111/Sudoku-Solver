@@ -1,6 +1,6 @@
 # Sudoku-Solver
 
-A web application which helps in solving 9 x 9 sudoku puzzle.
+A web application which solves 9 x 9 sudoku puzzle.
 
 ## Tech stack used
   1) Vanilla Javascript
