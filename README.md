@@ -1,3 +1,3 @@
 # Sudoku-Solver
 
-https://sage-stardust-f37047.netlify.app/
+https://loquacious-sunshine-adf7c0.netlify.app/
