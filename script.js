@@ -30,6 +30,12 @@ function matrixToBoard(matrix) {
   var index = 0;
   for (var row = 0; row < 9; row++) {
     for (var col = 0; col < 9; col++) {
+      var prevcolor = board[index].style.backgroundColor;
+      if(prevcolor == "red")
+      {
+        board[index].style.backgroundColor = "darkgrey";
+        board[index].style.color = "black";
+      }
       board[index].innerText = matrix[row][col];
       index++;
     }
