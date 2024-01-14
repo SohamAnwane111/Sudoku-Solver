@@ -118,7 +118,7 @@ function areColumnsValid() {
         if (found == false) {
           var text = board[start_index[i] + j * 9].innerText;
           board[start_index[i] + j * 9].style.backgroundColor = "red";
-          board[start_index[i] + j * 9].style.color = "red";
+          board[start_index[i] + j * 9].style.color = "white";
           board[start_index[i] + j * 9].innerText = text;
           return false;
         }
