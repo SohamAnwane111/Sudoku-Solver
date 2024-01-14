@@ -42,6 +42,8 @@
 
     var row = [1, 10, 19, 28, 37, 46, 55, 64, 73];
     var col = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var box_index = [1, 4, 7, 28, 31, 34, 55, 58, 61];
+    var cell = [0, 1, 2, 9, 10, 11, 18, 19, 20];
 
      document.getElementById("sudoku-board").addEventListener("keyup", function(event){
       if(event.target.nodeName == "TD"){
@@ -69,6 +71,24 @@
       {
         var tdel = event.target;
         var identity = tdel.getAttribute('id');
+        var position = parseInt(identity);
+        var found = false;
+        var boxIndex;
+
+        for(var i = 0; i < 9; i++)
+        {
+           for(var j = 0; j < 9 && !found; j++)
+           {
+              if(position == box_index[i] + cell[j])
+              {
+                boxIndex = i;
+                found = true;
+              }
+           }
+           if(found)
+             break;
+        }
+
         var position1 = parseInt(identity);
         var position2 = parseInt(identity);         
         if(position1 % 9  == 0)
@@ -85,10 +105,13 @@
         {
           var prevColor1 = document.getElementById(row[position1] + i).style.backgroundColor;
           var prevColor2 = document.getElementById(col[position2] + i * 9).style.backgroundColor;
+          var prevColor3 = document.getElementById(box_index[boxIndex] + cell[i]).style.backgroundColor;
           if(prevColor1 != "darkgrey" && prevColor1 != "red")
-              document.getElementById(row[position1] + i).style.backgroundColor = "slateblue";
+              document.getElementById(row[position1] + i).style.backgroundColor = "indigo";
           if(prevColor2 != "darkgrey" && prevColor2 != "red")
-            document.getElementById(col[position2] + i * 9).style.backgroundColor = "slateblue";
+            document.getElementById(col[position2] + i * 9).style.backgroundColor = "indigo";
+          if(prevColor3 != "darkgrey" && prevColor3 != "red")
+            document.getElementById(box_index[boxIndex] + cell[i]).style.backgroundColor = "indigo";
         }
       }
       document.getElementById("sudoku-board").addEventListener("mouseout", function(event)
@@ -97,6 +120,24 @@
         {
           var tdel = event.target;
           var identity = tdel.getAttribute('id');
+          var position = parseInt(identity);
+          var found = false;
+          var boxIndex;
+
+        for(var i = 0; i < 9; i++)
+        {
+           for(var j = 0; j < 9 && !found; j++)
+           {
+              if(position == box_index[i] + cell[j])
+              {
+                boxIndex = i;
+                found = true;
+              }
+           }
+           if(found)
+             break;
+        }
+
           var position1 = parseInt(identity);
           var position2 = parseInt(identity);
           if(position1 % 9 == 0)
@@ -112,10 +153,19 @@
           {
             var prevColor1 = document.getElementById(row[position1] + i).style.backgroundColor;
             var prevColor2 = document.getElementById(col[position2] + i * 9).style.backgroundColor;
+            var prevColor3 = document.getElementById(box_index[boxIndex] + cell[i]).style.backgroundColor;
             if(prevColor1 != "darkgrey" && prevColor1 != "red")
               document.getElementById(row[position1] + i).style.backgroundColor = "black";
             if(prevColor2 != "darkgrey" && prevColor2 != "red")
+            {
               document.getElementById(col[position2] + i * 9).style.backgroundColor = "black";
+              document.getElementById(col[position2] + i * 9).style.color = "white";
+            }
+            if(prevColor3 != "darkgrey" && prevColor3 != "red")
+            {
+              document.getElementById(box_index[boxIndex] + cell[i]).style.backgroundColor = "black";
+              document.getElementById(box_index[boxIndex] + cell[i]).style.color = "white";
+            }
           }
         }
       })
